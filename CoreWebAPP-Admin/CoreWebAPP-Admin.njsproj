@@ -1,0 +1,336 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>CoreWebAPP-Admin</Name>
+    <RootNamespace>CoreWebAPP-Admin</RootNamespace>
+    <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>b13041be-b8bc-4584-85bc-cc2e0bd2cb48</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>server.js</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <NodejsPort>1337</NodejsPort>
+    <StartWebBrowser>true</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include=".eslintrc.js" />
+    <Compile Include=".postcssrc.js" />
+    <Compile Include="server.js" />
+    <Compile Include="src\api\data.js" />
+    <Compile Include="src\api\routers.js" />
+    <Compile Include="src\api\user.js" />
+    <Compile Include="src\components\charts\index.js" />
+    <Compile Include="src\components\common-icon\index.js" />
+    <Compile Include="src\components\common\util.js" />
+    <Compile Include="src\components\count-to\index.js" />
+    <Compile Include="src\components\cropper\index.js" />
+    <Compile Include="src\components\drag-list\index.js" />
+    <Compile Include="src\components\editor\index.js" />
+    <Compile Include="src\components\icons\index.js" />
+    <Compile Include="src\components\info-card\index.js" />
+    <Compile Include="src\components\login-form\index.js" />
+    <Compile Include="src\components\main\components\a-back-top\index.js" />
+    <Compile Include="src\components\main\components\error-store\index.js" />
+    <Compile Include="src\components\main\components\fullscreen\index.js" />
+    <Compile Include="src\components\main\components\header-bar\custom-bread-crumb\index.js" />
+    <Compile Include="src\components\main\components\header-bar\index.js" />
+    <Compile Include="src\components\main\components\header-bar\sider-trigger\index.js" />
+    <Compile Include="src\components\main\components\language\index.js" />
+    <Compile Include="src\components\main\components\side-menu\index.js" />
+    <Compile Include="src\components\main\components\side-menu\item-mixin.js" />
+    <Compile Include="src\components\main\components\side-menu\mixin.js" />
+    <Compile Include="src\components\main\components\tags-nav\index.js" />
+    <Compile Include="src\components\main\components\user\index.js" />
+    <Compile Include="src\components\main\index.js" />
+    <Compile Include="src\components\markdown\index.js" />
+    <Compile Include="src\components\parent-view\index.js" />
+    <Compile Include="src\components\paste-editor\index.js" />
+    <Compile Include="src\components\paste-editor\plugins\placeholder.js" />
+    <Compile Include="src\components\split-pane\index.js" />
+    <Compile Include="src\components\tables\handle-btns.js" />
+    <Compile Include="src\components\tables\index.js" />
+    <Compile Include="src\config\index.js" />
+    <Compile Include="src\directive\directives.js" />
+    <Compile Include="src\directive\index.js" />
+    <Compile Include="src\directive\module\clipboard.js" />
+    <Compile Include="src\directive\module\draggable.js" />
+    <Compile Include="src\libs\api.request.js" />
+    <Compile Include="src\libs\axios.js" />
+    <Compile Include="src\libs\excel.js" />
+    <Compile Include="src\libs\tools.js" />
+    <Compile Include="src\libs\util.js" />
+    <Compile Include="src\locale\index.js" />
+    <Compile Include="src\locale\lang\en-US.js" />
+    <Compile Include="src\locale\lang\zh-CN.js" />
+    <Compile Include="src\locale\lang\zh-TW.js" />
+    <Compile Include="src\main.js" />
+    <Compile Include="src\mock\data.js" />
+    <Compile Include="src\mock\index.js" />
+    <Compile Include="src\mock\login.js" />
+    <Compile Include="src\mock\user.js" />
+    <Compile Include="src\plugin\error-store\index.js" />
+    <Compile Include="src\plugin\index.js" />
+    <Compile Include="src\router\before-close.js" />
+    <Compile Include="src\router\index.js" />
+    <Compile Include="src\router\routers.js" />
+    <Compile Include="src\store\index.js" />
+    <Compile Include="src\store\module\app.js" />
+    <Compile Include="src\store\module\user.js" />
+    <Compile Include="src\view\single-page\home\index.js" />
+    <Compile Include="tests\e2e\plugins\index.js" />
+    <Compile Include="tests\e2e\specs\test.js" />
+    <Compile Include="tests\e2e\support\commands.js" />
+    <Compile Include="tests\e2e\support\index.js" />
+    <Compile Include="tests\unit\.eslintrc.js" />
+    <Compile Include="tests\unit\HelloWorld.spec.js" />
+    <Compile Include="vue.config.js" />
+    <Content Include=".babelrc" />
+    <Content Include=".editorconfig" />
+    <Content Include=".eslintignore" />
+    <Content Include=".gitignore" />
+    <Content Include=".travis.yml" />
+    <Content Include="cypress.json" />
+    <Content Include="LICENSE" />
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
+    <Content Include="public\favicon.ico" />
+    <Content Include="public\index.html" />
+    <Content Include="README.md" />
+    <Content Include="src\App.vue" />
+    <Content Include="src\assets\icons\iconfont.css" />
+    <Content Include="src\assets\icons\iconfont.eot" />
+    <Content Include="src\assets\icons\iconfont.svg" />
+    <Content Include="src\assets\icons\iconfont.ttf" />
+    <Content Include="src\assets\icons\iconfont.woff" />
+    <Content Include="src\assets\images\error-page\error-401.svg" />
+    <Content Include="src\assets\images\error-page\error-404.svg" />
+    <Content Include="src\assets\images\error-page\error-500.svg" />
+    <Content Include="src\assets\images\login-bg.jpg" />
+    <Content Include="src\assets\images\logo-min.jpg" />
+    <Content Include="src\assets\images\logo.jpg" />
+    <Content Include="src\assets\images\qq-group1.jpg" />
+    <Content Include="src\assets\images\qq-group2.jpg" />
+    <Content Include="src\assets\images\talkingdata.png" />
+    <Content Include="src\components\charts\bar.vue" />
+    <Content Include="src\components\charts\pie.vue" />
+    <Content Include="src\components\charts\theme.json" />
+    <Content Include="src\components\common-icon\common-icon.vue" />
+    <Content Include="src\components\common\common.less" />
+    <Content Include="src\components\count-to\count-to.vue" />
+    <Content Include="src\components\count-to\index.less" />
+    <Content Include="src\components\cropper\index.less" />
+    <Content Include="src\components\cropper\index.vue" />
+    <Content Include="src\components\drag-list\drag-list.vue" />
+    <Content Include="src\components\editor\editor.vue" />
+    <Content Include="src\components\icons\icons.vue" />
+    <Content Include="src\components\info-card\infor-card.vue" />
+    <Content Include="src\components\login-form\login-form.vue" />
+    <Content Include="src\components\main\components\a-back-top\index.vue" />
+    <Content Include="src\components\main\components\error-store\error-store.vue" />
+    <Content Include="src\components\main\components\fullscreen\fullscreen.vue" />
+    <Content Include="src\components\main\components\header-bar\custom-bread-crumb\custom-bread-crumb.less" />
+    <Content Include="src\components\main\components\header-bar\custom-bread-crumb\custom-bread-crumb.vue" />
+    <Content Include="src\components\main\components\header-bar\header-bar.less" />
+    <Content Include="src\components\main\components\header-bar\header-bar.vue" />
+    <Content Include="src\components\main\components\header-bar\sider-trigger\sider-trigger.less" />
+    <Content Include="src\components\main\components\header-bar\sider-trigger\sider-trigger.vue" />
+    <Content Include="src\components\main\components\language\language.vue" />
+    <Content Include="src\components\main\components\side-menu\collapsed-menu.vue" />
+    <Content Include="src\components\main\components\side-menu\side-menu-item.vue" />
+    <Content Include="src\components\main\components\side-menu\side-menu.less" />
+    <Content Include="src\components\main\components\side-menu\side-menu.vue" />
+    <Content Include="src\components\main\components\tags-nav\tags-nav.less" />
+    <Content Include="src\components\main\components\tags-nav\tags-nav.vue" />
+    <Content Include="src\components\main\components\user\user.less" />
+    <Content Include="src\components\main\components\user\user.vue" />
+    <Content Include="src\components\main\main.less" />
+    <Content Include="src\components\main\main.vue" />
+    <Content Include="src\components\markdown\markdown.vue" />
+    <Content Include="src\components\parent-view\parent-view.vue" />
+    <Content Include="src\components\paste-editor\paste-editor.less" />
+    <Content Include="src\components\paste-editor\paste-editor.vue" />
+    <Content Include="src\components\split-pane\index.less" />
+    <Content Include="src\components\split-pane\split.vue" />
+    <Content Include="src\components\split-pane\trigger.vue" />
+    <Content Include="src\components\tables\edit.vue" />
+    <Content Include="src\components\tables\index.less" />
+    <Content Include="src\components\tables\tables.vue" />
+    <Content Include="src\index.less" />
+    <Content Include="src\view\argu-page\params.vue" />
+    <Content Include="src\view\argu-page\query.vue" />
+    <Content Include="src\view\components\count-to\count-to.vue" />
+    <Content Include="src\view\components\cropper\cropper.vue" />
+    <Content Include="src\view\components\drag-list\drag-list.vue" />
+    <Content Include="src\view\components\editor\editor.vue" />
+    <Content Include="src\view\components\icons\icons.vue" />
+    <Content Include="src\view\components\markdown\markdown.vue" />
+    <Content Include="src\view\components\split-pane\split-pane.vue" />
+    <Content Include="src\view\components\tables\tables.vue" />
+    <Content Include="src\view\components\tree-table\index.vue" />
+    <Content Include="src\view\directive\directive.vue" />
+    <Content Include="src\view\error-page\401.vue" />
+    <Content Include="src\view\error-page\404.vue" />
+    <Content Include="src\view\error-page\500.vue" />
+    <Content Include="src\view\error-page\back-btn-group.vue" />
+    <Content Include="src\view\error-page\error-content.vue" />
+    <Content Include="src\view\error-page\error.less" />
+    <Content Include="src\view\error-store\error-store.vue" />
+    <Content Include="src\view\excel\common.less" />
+    <Content Include="src\view\excel\export-excel.vue" />
+    <Content Include="src\view\excel\upload-excel.vue" />
+    <Content Include="src\view\i18n\i18n-page.vue" />
+    <Content Include="src\view\join-page.vue" />
+    <Content Include="src\view\login\login.less" />
+    <Content Include="src\view\login\login.vue" />
+    <Content Include="src\view\multilevel\level-2-1.vue" />
+    <Content Include="src\view\multilevel\level-2-2\level-2-2-1.vue" />
+    <Content Include="src\view\multilevel\level-2-2\level-2-2-2.vue" />
+    <Content Include="src\view\multilevel\level-2-3.vue" />
+    <Content Include="src\view\single-page\error-logger.vue" />
+    <Content Include="src\view\single-page\home\example.vue" />
+    <Content Include="src\view\single-page\home\home.vue" />
+    <Content Include="src\view\single-page\message\index.vue" />
+    <Content Include="src\view\tools-methods\tools-methods.vue" />
+    <Content Include="src\view\update\update-paste.vue" />
+    <Content Include="src\view\update\update-table.vue" />
+    <Content Include="tests\e2e\.eslintrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="public\" />
+    <Folder Include="src\" />
+    <Folder Include="src\api\" />
+    <Folder Include="src\assets\" />
+    <Folder Include="src\assets\icons\" />
+    <Folder Include="src\assets\images\" />
+    <Folder Include="src\assets\images\error-page\" />
+    <Folder Include="src\components\" />
+    <Folder Include="src\components\charts\" />
+    <Folder Include="src\components\common-icon\" />
+    <Folder Include="src\components\common\" />
+    <Folder Include="src\components\count-to\" />
+    <Folder Include="src\components\cropper\" />
+    <Folder Include="src\components\drag-list\" />
+    <Folder Include="src\components\editor\" />
+    <Folder Include="src\components\icons\" />
+    <Folder Include="src\components\info-card\" />
+    <Folder Include="src\components\login-form\" />
+    <Folder Include="src\components\main\" />
+    <Folder Include="src\components\main\components\" />
+    <Folder Include="src\components\main\components\a-back-top\" />
+    <Folder Include="src\components\main\components\error-store\" />
+    <Folder Include="src\components\main\components\fullscreen\" />
+    <Folder Include="src\components\main\components\header-bar\" />
+    <Folder Include="src\components\main\components\header-bar\custom-bread-crumb\" />
+    <Folder Include="src\components\main\components\header-bar\sider-trigger\" />
+    <Folder Include="src\components\main\components\language\" />
+    <Folder Include="src\components\main\components\side-menu\" />
+    <Folder Include="src\components\main\components\tags-nav\" />
+    <Folder Include="src\components\main\components\user\" />
+    <Folder Include="src\components\markdown\" />
+    <Folder Include="src\components\parent-view\" />
+    <Folder Include="src\components\paste-editor\" />
+    <Folder Include="src\components\paste-editor\plugins\" />
+    <Folder Include="src\components\split-pane\" />
+    <Folder Include="src\components\tables\" />
+    <Folder Include="src\config\" />
+    <Folder Include="src\directive\" />
+    <Folder Include="src\directive\module\" />
+    <Folder Include="src\libs\" />
+    <Folder Include="src\locale\" />
+    <Folder Include="src\locale\lang\" />
+    <Folder Include="src\mock\" />
+    <Folder Include="src\plugin\" />
+    <Folder Include="src\plugin\error-store\" />
+    <Folder Include="src\router\" />
+    <Folder Include="src\store\" />
+    <Folder Include="src\store\module\" />
+    <Folder Include="src\view\" />
+    <Folder Include="src\view\argu-page\" />
+    <Folder Include="src\view\components\" />
+    <Folder Include="src\view\components\count-to\" />
+    <Folder Include="src\view\components\cropper\" />
+    <Folder Include="src\view\components\drag-list\" />
+    <Folder Include="src\view\components\editor\" />
+    <Folder Include="src\view\components\icons\" />
+    <Folder Include="src\view\components\markdown\" />
+    <Folder Include="src\view\components\split-pane\" />
+    <Folder Include="src\view\components\tables\" />
+    <Folder Include="src\view\components\tree-table\" />
+    <Folder Include="src\view\directive\" />
+    <Folder Include="src\view\error-page\" />
+    <Folder Include="src\view\error-store\" />
+    <Folder Include="src\view\excel\" />
+    <Folder Include="src\view\i18n\" />
+    <Folder Include="src\view\login\" />
+    <Folder Include="src\view\multilevel\" />
+    <Folder Include="src\view\multilevel\level-2-2\" />
+    <Folder Include="src\view\single-page\" />
+    <Folder Include="src\view\single-page\home\" />
+    <Folder Include="src\view\single-page\message\" />
+    <Folder Include="src\view\tools-methods\" />
+    <Folder Include="src\view\update\" />
+    <Folder Include="tests\" />
+    <Folder Include="tests\e2e\" />
+    <Folder Include="tests\e2e\plugins\" />
+    <Folder Include="tests\e2e\specs\" />
+    <Folder Include="tests\e2e\support\" />
+    <Folder Include="tests\unit\" />
+  </ItemGroup>
+  <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
