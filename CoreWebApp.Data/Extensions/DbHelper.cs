@@ -12,12 +12,8 @@ namespace CoreWebApp.Data.Extensions
 {
     public class DbHelper
     {
-        //private static string connstring = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
 
-        //public static object GetDataTable(string v, object commandType)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        //private static string connstring = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
 
         ////数据提供程序
         //private static string dbPro = "System.Data.SqlClient";

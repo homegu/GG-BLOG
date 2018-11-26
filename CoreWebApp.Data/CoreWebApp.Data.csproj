@@ -12,11 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modles\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CoreWebApp.Core\CoreWebApp.Core.csproj" />
+    <ProjectReference Include="..\CoreWebApp.Entity\CoreWebApp.Model.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using CoreWebAPP.Models;
 using CoreWebApp.Data.DBContext;
 using CoreWebApp.Data;
+using CoreWebApp.Data.Extensions;
 
 namespace CoreWebAPP.Controllers
 {
@@ -14,6 +15,9 @@ namespace CoreWebAPP.Controllers
     {
         public IActionResult Index()
         {
+
+            //var user =  DbHelper.GetDataTable("select * from user", System.Data.CommandType.Text);
+
             //using (var db = new DataContext())
             //{
             //    User user = new User();

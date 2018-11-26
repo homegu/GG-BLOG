@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CoreWebApp.Core
 {
-    public static class IEnumerableExtensions
+    public static partial class Ext
     {
 
         //public static TSource Search<TSource>(IEnumerable<TSource> @this, Func<TSource, bool> predicate, bool includeNull = false)

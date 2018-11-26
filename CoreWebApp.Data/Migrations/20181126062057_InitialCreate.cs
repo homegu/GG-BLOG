@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CoreWebApp.Data.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,11 +11,14 @@ namespace CoreWebApp.Data.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(nullable: false),
                     UserName = table.Column<string>(nullable: true),
                     PassWord = table.Column<string>(nullable: true),
-                    Address = table.Column<string>(nullable: true)
+                    Enabled = table.Column<bool>(nullable: false),
+                    LoginCount = table.Column<int>(nullable: false),
+                    RegIP = table.Column<string>(nullable: true),
+                    LastLoginIP = table.Column<string>(nullable: true),
+                    LastLoginTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

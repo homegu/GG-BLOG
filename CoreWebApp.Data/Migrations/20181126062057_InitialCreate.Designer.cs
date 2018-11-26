@@ -4,14 +4,16 @@ using CoreWebApp.Data.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CoreWebApp.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20181126062057_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,38 +24,25 @@ namespace CoreWebApp.Data.Migrations
             modelBuilder.Entity("CoreWebApp.Model.User", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(100);
-
-                    b.Property<int>("CreateBy");
-
-                    b.Property<DateTime>("CreateTime");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<bool>("Enabled");
 
-                    b.Property<string>("LastLoginIP")
-                        .HasMaxLength(50);
+                    b.Property<string>("LastLoginIP");
 
                     b.Property<DateTime>("LastLoginTime");
 
                     b.Property<int>("LoginCount");
 
-                    b.Property<string>("PassWord")
-                        .HasMaxLength(30);
+                    b.Property<string>("PassWord");
 
-                    b.Property<string>("RegIP")
-                        .HasMaxLength(50);
+                    b.Property<string>("RegIP");
 
-                    b.Property<int>("UpdateBy");
-
-                    b.Property<DateTime>("UpdateTime");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(30);
+                    b.Property<string>("UserName");
 
                     b.HasKey("Id");
 
-                    b.ToTable("sys_User");
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

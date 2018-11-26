@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="1.8.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreWebApp.Core\CoreWebApp.Core.csproj" />
+    <ProjectReference Include="..\CoreWebApp.Data\CoreWebApp.Data.csproj" />
+    <ProjectReference Include="..\CoreWebApp.Entity\CoreWebApp.Model.csproj" />
+    <ProjectReference Include="..\CoreWebApp.Repository.Contract\CoreWebApp.Repository.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

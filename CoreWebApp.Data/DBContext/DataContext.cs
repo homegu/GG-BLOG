@@ -1,4 +1,5 @@
 ﻿using CoreWebApp.Data;
+using CoreWebApp.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
