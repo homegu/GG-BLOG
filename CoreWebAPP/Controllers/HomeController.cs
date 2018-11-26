@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CoreWebAPP.Models;
+using CoreWebApp.Data.DBContext;
+using CoreWebApp.Data;
 
 namespace CoreWebAPP.Controllers
 {
@@ -12,6 +14,16 @@ namespace CoreWebAPP.Controllers
     {
         public IActionResult Index()
         {
+            //using (var db = new DataContext())
+            //{
+            //    User user = new User();
+            //    user.UserName = "谷城";
+            //    user.PassWord = "abcd1234";
+            //    user.Address = "广东省深圳市龙华新区";
+            //    db.User.Add(user);
+
+            //    db.SaveChanges();
+            //}
             return View();
         }
 

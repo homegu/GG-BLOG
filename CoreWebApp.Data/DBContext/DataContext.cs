@@ -43,6 +43,23 @@ namespace CoreWebApp.Data.DBContext
             //optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;database=NotifyBird;Trusted_Connection=True;");
         }
 
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    ///DomainMapping  所在的程序集一定要写对，因为目前在当前项目所以是采用的当前正在运行的程序集 如果你的mapping在单独的项目中 记得要加载对应的assembly
+        //    ///这是重点
+        //    var typesToRegister = Assembly.GetExecutingAssembly().GetTypes()
+        //  .Where(type => !String.IsNullOrEmpty(type.Namespace))
+        //  .Where(type => type.BaseType != null && type.BaseType.BaseType != null && type.BaseType.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>));
+        //    foreach (var type in typesToRegister)
+        //    {
+        //        dynamic configurationInstance = Activator.CreateInstance(type);
+        //        modelBuilder.Configurations.Add(configurationInstance);
+        //    }
+
+        //    base.OnModelCreating(modelBuilder);
+        //}
+
         public DbSet<User> User { get; set; }
     }
 }
