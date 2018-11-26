@@ -12,7 +12,7 @@ using CoreWebApp.Model;
 
 namespace CoreWebApp.Repository
 {
-    public abstract class Repository<T> : IRepository<T> where T: Entity
+    public class Repository<T> : IRepository<T> where T: Entity
     {
         private DataContext _context;
         public Repository(DataContext context)

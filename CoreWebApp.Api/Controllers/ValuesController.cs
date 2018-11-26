@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreWebApp.Repository.Contract;
+using CoreWebApp.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreWebApp.Api.Controllers
@@ -10,6 +12,12 @@ namespace CoreWebApp.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private UserService userService;
+
+        public ValuesController(UserService _service) {
+            userService = _service;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()

@@ -19,6 +19,8 @@ namespace CoreWebApp.Model
         public Entity()
         {
             Id = Guid.NewGuid().ToString();
+            CreateTime = DateTime.Now;
+            UpdateTime = DateTime.Now;
         }
     }
 }

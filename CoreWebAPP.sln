@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 应用服务层", "02 �
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWebApp.Mapping", "CoreWebApp.Mapping\CoreWebApp.Mapping.csproj", "{E384CB5A-EBDE-42A5-8C02-0AC3ADA1DE6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWebApp.Service", "CoreWebApp.Service\CoreWebApp.Service.csproj", "{6CA1A6FD-7D86-468D-A23E-CF75EDC107A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{E384CB5A-EBDE-42A5-8C02-0AC3ADA1DE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E384CB5A-EBDE-42A5-8C02-0AC3ADA1DE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E384CB5A-EBDE-42A5-8C02-0AC3ADA1DE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CA1A6FD-7D86-468D-A23E-CF75EDC107A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CA1A6FD-7D86-468D-A23E-CF75EDC107A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CA1A6FD-7D86-468D-A23E-CF75EDC107A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CA1A6FD-7D86-468D-A23E-CF75EDC107A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{BB158C40-0257-415B-B2CF-9460233860F7} = {9501C7FD-103A-48D0-B8F0-A7C080915E96}
 		{5C1F46D7-AC97-420D-B0CC-1C1CFF5038E3} = {FD4DE0AC-E1BC-4FC7-88F9-13B4E6DD54EE}
 		{E384CB5A-EBDE-42A5-8C02-0AC3ADA1DE6F} = {729A89CF-8AA1-4812-9341-007EAE49F77C}
+		{6CA1A6FD-7D86-468D-A23E-CF75EDC107A1} = {729A89CF-8AA1-4812-9341-007EAE49F77C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA76E1A3-7DD6-4665-9D1E-91144AD4FE2A}

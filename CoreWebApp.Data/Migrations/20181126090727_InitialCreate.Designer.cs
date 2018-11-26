@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreWebApp.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20181126062352_InitialCreate2")]
-    partial class InitialCreate2
+    [Migration("20181126090727_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,12 @@ namespace CoreWebApp.Data.Migrations
             modelBuilder.Entity("CoreWebApp.Model.User", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(100);
+
+                    b.Property<int>("CreateBy");
+
+                    b.Property<DateTime>("CreateTime");
 
                     b.Property<bool>("Enabled");
 
@@ -40,6 +45,10 @@ namespace CoreWebApp.Data.Migrations
 
                     b.Property<string>("RegIP")
                         .HasMaxLength(50);
+
+                    b.Property<int>("UpdateBy");
+
+                    b.Property<DateTime>("UpdateTime");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(30);
