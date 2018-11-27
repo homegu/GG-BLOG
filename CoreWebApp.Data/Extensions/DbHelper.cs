@@ -12,7 +12,6 @@ namespace CoreWebApp.Data.Extensions
 {
     public class DbHelper
     {
-
         //private static string connstring = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
 
         ////数据提供程序

@@ -26,13 +26,6 @@ namespace CoreWebApp.Core
             //注册app层
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly());
 
-            //services.AddScoped(typeof(IAuth), typeof(LocalAuth));
-            //如果想使用WebApi SSO授权，请使用下面这种方式
-            //services.AddScoped(typeof(IAuth), typeof(ApiAuth));
-
-            //注册app层
-            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly());
-
             ////防止单元测试时已经注入
             //if (services.All(u => u.ServiceType != typeof(ICacheContext)))
             //{

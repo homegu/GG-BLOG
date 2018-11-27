@@ -15,19 +15,6 @@ namespace CoreWebAPP.Controllers
     {
         public IActionResult Index()
         {
-
-            //var user =  DbHelper.GetDataTable("select * from user", System.Data.CommandType.Text);
-
-            //using (var db = new DataContext())
-            //{
-            //    User user = new User();
-            //    user.UserName = "谷城";
-            //    user.PassWord = "abcd1234";
-            //    user.Address = "广东省深圳市龙华新区";
-            //    db.User.Add(user);
-
-            //    db.SaveChanges();
-            //}
             return View();
         }
 

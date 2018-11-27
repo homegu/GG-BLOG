@@ -57,6 +57,7 @@ namespace CoreWebAPP
             //AddTransient瞬时模式：每次请求，都获取一个新的实例。即使同一个请求获取多次也会是不同的实例
             //AddScoped：每次请求，都获取一个新的实例。同一个请求获取多次会得到相同的实例
             //AddSingleton单例模式：每次都获取同一个实例
+            //services.Configure<AppSetting>(Configuration.GetSection("AppSetting"));
 
             services.AddCors(); //注册的 CORS 服务
 

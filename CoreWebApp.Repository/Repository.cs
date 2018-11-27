@@ -9,6 +9,9 @@ using System.Text;
 using CoreWebApp.Core;
 using Z.EntityFramework.Plus;
 using CoreWebApp.Model;
+using System.Data.Common;
+using System.Reflection;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoreWebApp.Repository
 {
@@ -20,12 +23,15 @@ namespace CoreWebApp.Repository
             _context = context;
         }
 
-        /// <summary>
-        /// 根据过滤条件，获取记录
-        /// </summary>
-        /// <param name="exp">The exp.</param>
         public IQueryable<T> Find(Expression<Func<T, bool>> exp = null)
         {
+            IQueryable<T> Filter(Expression<Func<T, bool>> expression)
+            {
+                var dbSet = _context.Set<T>().AsNoTracking().AsQueryable();
+                if (exp != null)
+                    dbSet = dbSet.Where(expression);
+                return dbSet;
+            }
             return Filter(exp);
         }
 
@@ -50,6 +56,15 @@ namespace CoreWebApp.Repository
         /// <param name="orderby">排序，格式如："Id"/"Id descending"</param>
         public IQueryable<T> Find(int pageindex, int pagesize, string orderby = "", Expression<Func<T, bool>> exp = null)
         {
+
+            IQueryable<T> Filter(Expression<Func<T, bool>> expression)
+            {
+                var dbSet = _context.Set<T>().AsNoTracking().AsQueryable();
+                if (exp != null)
+                    dbSet = dbSet.Where(expression);
+                return dbSet;
+            }
+
             if (pageindex < 1) pageindex = 1;
             if (string.IsNullOrEmpty(orderby))
                 orderby = "Id descending";
@@ -57,15 +72,19 @@ namespace CoreWebApp.Repository
             return Filter(exp).OrderBy(orderby).Skip(pagesize * (pageindex - 1)).Take(pagesize);
         }
 
-        /// <summary>
-        /// 根据过滤条件获取记录数
-        /// </summary>
         public int GetCount(Expression<Func<T, bool>> exp = null)
         {
+            IQueryable<T> Filter(Expression<Func<T, bool>> expression)
+            {
+                var dbSet = _context.Set<T>().AsNoTracking().AsQueryable();
+                if (exp != null)
+                    dbSet = dbSet.Where(expression);
+                return dbSet;
+            }
             return Filter(exp).Count();
         }
 
-        public void Add(T entity)
+        public void Insert(T entity)
         {
             if (string.IsNullOrEmpty(entity.Id))
             {
@@ -76,11 +95,7 @@ namespace CoreWebApp.Repository
             _context.Entry(entity).State = EntityState.Detached;
         }
 
-        /// <summary>
-        /// 批量添加
-        /// </summary>
-        /// <param name="entities">The entities.</param>
-        public void BatchAdd(T[] entities)
+        public void Insert(T[] entities)
         {
             foreach (var entity in entities)
             {
@@ -110,7 +125,6 @@ namespace CoreWebApp.Repository
             Save();
         }
 
-
         /// <summary>
         /// 实现按需要只更新部分更新
         /// <para>如：Update(u =>u.Id==1,u =>new User{Name="ok"});</para>
@@ -132,18 +146,39 @@ namespace CoreWebApp.Repository
             _context.SaveChanges();
         }
 
-        private IQueryable<T> Filter(Expression<Func<T, bool>> exp)
-        {
-            var dbSet = _context.Set<T>().AsNoTracking().AsQueryable();
-            if (exp != null)
-                dbSet = dbSet.Where(exp);
-            return dbSet;
-        }
-
         public int ExecuteSql(string sql)
         {
             return _context.Database.ExecuteSqlCommand(sql);
         }
 
+        public T FindBy(Expression<Func<T, bool>> predicate)
+        {
+            return _context.Set<T>().FirstOrDefault(predicate);
+        }
+        public IEnumerable<T> FindListBy(Expression<Func<T, bool>> predicate, int top)
+        {
+            if (top > 0)
+            {
+                return _context.Set<T>().AsNoTracking().Where(predicate).Take(top).ToArray();
+            }
+            return _context.Set<T>().AsNoTracking().Where(predicate).ToArray();
+        }
+        public bool Exists(Expression<Func<T, bool>> predicate)
+        {
+            return _context.Set<T>().Count(predicate) > 0;
+        }
+        protected string TableName
+        {
+            get
+            {
+                var entityType = typeof(T);
+                var tb = entityType.GetCustomAttribute<TableAttribute>();
+                if (tb == null)
+                {
+                    throw new Exception($"无法获取表名，{entityType.Name}无TableAttribute特性。");
+                }
+                return tb.Name;
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoreWebApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -6,16 +7,8 @@ using System.Text;
 
 namespace CoreWebApp.Repository.Contract
 {
-    public interface IRepository
-    {
-
-    }
-
-    /// <summary>
-    /// Repository标记接口
-    /// </summary>
-    public interface IRepository<T> : IRepository
-        where T : class
+    public interface IRepository<T> 
+        where T : Entity
     {
         T FindSingle(Expression<Func<T, bool>> exp = null);
         bool IsExist(Expression<Func<T, bool>> exp);
@@ -26,30 +19,24 @@ namespace CoreWebApp.Repository.Contract
 
         int GetCount(Expression<Func<T, bool>> exp = null);
 
-        void Add(T entity);
+        void Insert(T entity);
 
-        void BatchAdd(T[] entities);
-        /// <summary>
-        /// 更新一个实体的所有属性
-        /// </summary>
+        void Insert(T[] entities);
+
         void Update(T entity);
 
         void Delete(T entity);
 
-        /// <summary>
-        /// 实现按需要只更新部分更新
-        /// <para>如：Update(u =>u.Id==1,u =>new User{Name="ok"});</para>
-        /// </summary>
-        /// <param name="where">更新条件</param>
-        /// <param name="entity">更新后的实体</param>
         void Update(Expression<Func<T, bool>> where, Expression<Func<T, T>> entity);
-        /// <summary>
-        /// 批量删除
-        /// </summary>
+
         void Delete(Expression<Func<T, bool>> exp);
 
         void Save();
 
         int ExecuteSql(string sql);
+
+        IEnumerable<T> FindListBy(Expression<Func<T, bool>> predicate, int top);
+        T FindBy(Expression<Func<T, bool>> predicate);
+        bool Exists(Expression<Func<T, bool>> predicate);
     }
 }
