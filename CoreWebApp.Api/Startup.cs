@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Configuration;
 using Autofac.Extensions.DependencyInjection;
 using CoreWebApp.Core;
 using CoreWebApp.Data.DBContext;
@@ -39,9 +41,7 @@ namespace CoreWebApp.Api
             services.AddCors();
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
-
-            //services.AddScoped<UserService>();
-
+          
             return new AutofacServiceProvider(AutofacCore.InitAutofac(services));
         }
 

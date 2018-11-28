@@ -17,8 +17,18 @@ namespace CoreWebApp.Api
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) {
+
+           // var config = new ConfigurationBuilder()
+           //.SetBasePath(Directory.GetCurrentDirectory())
+           //.AddJsonFile("autofac.json", optional: true)
+           //.AddCommandLine(args)
+           //.Build();
+
+            return WebHost.CreateDefaultBuilder(args)
+                //.UseConfiguration(config)
                 .UseStartup<Startup>();
+        }
+
     }
 }

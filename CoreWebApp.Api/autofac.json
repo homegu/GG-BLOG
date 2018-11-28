@@ -1,0 +1,7 @@
+﻿{
+  "modules": [
+    {
+      "type": "CoreWebApp.Service.RegisterService, CoreWebApp.Service"
+    }
+  ]
+}

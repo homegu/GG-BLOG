@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoreWebApp.Repository.Contract;
 using CoreWebApp.Service;
+using CoreWebApp.Service.Module;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreWebApp.Api.Controllers
@@ -14,7 +15,8 @@ namespace CoreWebApp.Api.Controllers
     {
         private UserService userService;
 
-        public ValuesController(UserService _service) {
+        public ValuesController(UserService _service)
+        {
             userService = _service;
         }
 
@@ -22,6 +24,7 @@ namespace CoreWebApp.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            userService.test();
             return new string[] { "value1", "value2" };
         }
 

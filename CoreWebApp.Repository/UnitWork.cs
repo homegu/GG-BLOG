@@ -16,9 +16,9 @@ namespace CoreWebApp.Repository
 {
     public class UnitWork: IUnitWork
     {
-        private readonly DbContext _context;
+        private readonly DataContext _context;
 
-        public UnitWork(DbContext context)
+        public UnitWork(DataContext context)
         {
             _context = context;
         }
