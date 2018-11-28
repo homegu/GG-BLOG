@@ -11,7 +11,7 @@ namespace CoreWebApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ValuesController : BaseController
     {
         private UserService userService;
 

@@ -42,9 +42,9 @@ namespace CoreWebApp.Service
 
             //将配置添加到ConfigurationBuilder
             var config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory());
+            config.AddJsonFile("autofac.json");
             //config.AddJsonFile来自Microsoft.Extensions.Configuration.Json
             //config.AddXmlFile来自Microsoft.Extensions.Configuration.Xml
-            config.AddJsonFile("autofac.json");
 
             //用Autofac注册ConfigurationModule
             var module = new ConfigurationModule(config.Build());
