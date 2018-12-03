@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
 
-namespace CoreWebApp.Core
+namespace CoreWebApp.Infrastructure
 {
     public static class DynamicQueryable
     {

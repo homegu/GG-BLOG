@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreWebApp.Core\CoreWebApp.Core.csproj" />
+    <ProjectReference Include="..\CoreWebApp.Core\CoreWebApp.Infrastructure.csproj" />
     <ProjectReference Include="..\CoreWebApp.Data\CoreWebApp.Data.csproj" />
     <ProjectReference Include="..\CoreWebApp.Entity\CoreWebApp.Model.csproj" />
     <ProjectReference Include="..\CoreWebApp.Repository.Contract\CoreWebApp.Repository.Contract.csproj" />

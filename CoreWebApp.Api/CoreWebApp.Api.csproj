@@ -12,9 +12,11 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CoreWebApp.Core\CoreWebApp.Infrastructure.csproj" />
     <ProjectReference Include="..\CoreWebApp.Data\CoreWebApp.Data.csproj" />
     <ProjectReference Include="..\CoreWebApp.Repository.Contract\CoreWebApp.Repository.Contract.csproj" />
     <ProjectReference Include="..\CoreWebApp.Repository\CoreWebApp.Repository.csproj" />

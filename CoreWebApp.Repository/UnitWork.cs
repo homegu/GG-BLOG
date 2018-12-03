@@ -8,7 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using Z.EntityFramework.Plus;
-using CoreWebApp.Core;
+using CoreWebApp.Infrastructure;
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Storage;
 

@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebApp.Data.Test", "Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebApp.Data", "CoreWebApp.Data\CoreWebApp.Data.csproj", "{74684630-FC99-4A0E-9B56-7D1513B49154}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWebApp.Core", "CoreWebApp.Core\CoreWebApp.Core.csproj", "{402477E8-3ED0-454A-8B0E-1B2A6294A06E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWebApp.Infrastructure", "CoreWebApp.Core\CoreWebApp.Infrastructure.csproj", "{402477E8-3ED0-454A-8B0E-1B2A6294A06E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWebApp.Repository.Contract", "CoreWebApp.Repository.Contract\CoreWebApp.Repository.Contract.csproj", "{3A1B8C40-79FB-42BB-A780-39EB3F53F544}"
 EndProject

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace CoreWebApp.Core
+namespace CoreWebApp.Infrastructure
 {
     public class Encryption
     {

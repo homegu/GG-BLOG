@@ -55,5 +55,14 @@ namespace CoreWebApp.Service
             return _container;
 
         }
+
+        /// <summary>
+        /// 从容器中获取对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public static T GetFromFac<T>()
+        {
+            return _container.Resolve<T>();
+        }
     }
 }

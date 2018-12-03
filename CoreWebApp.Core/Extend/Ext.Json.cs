@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace CoreWebApp.Core
+namespace CoreWebApp.Infrastructure
 {
     public static partial class Ext
     {

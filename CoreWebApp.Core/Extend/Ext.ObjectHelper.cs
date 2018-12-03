@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace CoreWebApp.Core
+namespace CoreWebApp.Infrastructure
 {
     public static partial class Ext
     {

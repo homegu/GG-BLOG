@@ -4,14 +4,16 @@ using CoreWebApp.Data.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CoreWebApp.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20181128083649_updateTable")]
+    partial class updateTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace CoreWebApp.Data.Migrations
 
                     b.Property<string>("PassWord")
                         .IsRequired()
-                        .HasMaxLength(32);
+                        .HasMaxLength(30);
 
                     b.Property<string>("RegisterIP")
                         .IsRequired()
@@ -44,7 +46,7 @@ namespace CoreWebApp.Data.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasMaxLength(32);
+                        .HasMaxLength(30);
 
                     b.HasKey("Id");
 

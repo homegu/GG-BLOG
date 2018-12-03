@@ -27,6 +27,7 @@ namespace CoreWebApp.Api
 
             return WebHost.CreateDefaultBuilder(args)
                 //.UseConfiguration(config)
+                .UseUrls("http://*:52789")
                 .UseStartup<Startup>();
         }
 

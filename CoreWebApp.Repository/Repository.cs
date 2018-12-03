@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using CoreWebApp.Core;
+using CoreWebApp.Infrastructure;
 using Z.EntityFramework.Plus;
 using CoreWebApp.Model;
 using System.Data.Common;

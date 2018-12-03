@@ -9,18 +9,24 @@ using System.Threading.Tasks;
 namespace CoreWebApp.Model
 {
     [Table("sys_User")]
-    public class User:Entity
+    public class User: UserBaseViewModel
     {
-        [MaxLength(30)]
-        public string UserName { get; set; }
-        [MaxLength(30)]
+        [MaxLength(32)]
+        [Required]
         public string PassWord { get; set; }
-        public bool Enabled { get; set; }
         public int LoginCount { get; set; }
         [MaxLength(50)]
-        public string RegIP { get; set; }
+        [Required]
+        public string RegisterIP { get; set; }
         [MaxLength(50)]
         public string LastLoginIP { get; set; }
-        public DateTime LastLoginTime { get; set; }
+    }
+
+    public class UserBaseViewModel: Entity_Enabled
+    {
+        [MaxLength(32)]
+        [Required]
+        public string UserName { get; set; }
+        public DateTime? LastLoginTime { get; set; }
     }
 }

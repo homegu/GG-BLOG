@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 
-namespace CoreWebApp.Core
+namespace CoreWebApp.Infrastructure
 {
     public static partial class Ext
     {
