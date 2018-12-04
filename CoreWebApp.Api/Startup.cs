@@ -31,6 +31,7 @@ using System.Text;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
 using CoreWebApp.Api.AuthHelper;
+using CoreWebApp.Api.Middleware;
 
 namespace CoreWebApp.Api
 {
@@ -49,7 +50,8 @@ namespace CoreWebApp.Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddMemoryCache();
-            services.AddCors();
+
+
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
@@ -58,29 +60,65 @@ namespace CoreWebApp.Api
             Configuration.Bind("JwtSettings", jwtSettings);
 
             //添加jwt验证：
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,//是否验证Issuer
-                        ValidateAudience = true,//是否验证Audience
-                        ValidateLifetime = true,//是否验证失效时间
-                        ValidateIssuerSigningKey = true,//是否验证SecurityKey
-                        ValidAudience = jwtSettings.Audience,//Audience
-                        ValidIssuer = jwtSettings.Issuer,//Issuer，这两项和前面签发jwt的设置一致
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))//拿到SecurityKey
-                    };
-                });
 
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,//是否验证Issuer
+                    ValidateAudience = true,//是否验证Audience
+                    ValidateLifetime = true,//是否验证超时  当设置exp和nbf时有效 同时启用ClockSkew 
+                    ValidateIssuerSigningKey = true,//是否验证SecurityKey
+                    ValidAudience = jwtSettings.Audience,//Audience
+                    ValidIssuer = jwtSettings.Issuer,//Issuer，这两项和前面签发jwt的设置一致
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey)),//拿到SecurityKey
+                    ClockSkew = TimeSpan.FromSeconds(30)//注意这是缓冲过期时间，总的有效时间等于这个时间加上jwt的过期时间，如果不配置，默认是5分钟
+                };
+            });
 
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
-                    Title = "MsSystem API"
+                    Title = $"博客接口文档",
+                    Description = $"博客 HTTP API v1",
+                    TermsOfService = "None",
                 });
             });
+
+            #region CORS
+            //跨域第二种方法，声明策略，记得下边app中配置
+            services.AddCors(c =>
+            {
+                //↓↓↓↓↓↓↓注意正式环境不要使用这种全开放的处理↓↓↓↓↓↓↓↓↓↓
+                c.AddPolicy("AllRequests", policy =>
+                {
+                    policy
+                    .AllowAnyOrigin()//允许任何源
+                    .AllowAnyMethod()//允许任何方式
+                    .AllowAnyHeader()//允许任何头
+                    .AllowCredentials();//允许cookie
+                });
+                //↑↑↑↑↑↑↑注意正式环境不要使用这种全开放的处理↑↑↑↑↑↑↑↑↑↑
+
+
+                //一般采用这种方法
+                c.AddPolicy("LimitRequests", policy =>
+                {
+                    policy
+                    .WithOrigins("http://127.0.0.1:1818", "http://localhost:8080", "http://localhost:8021", "http://localhost:8081", "http://localhost:1818")//支持多个域名端口，注意端口号后不要带/斜杆：比如localhost:8000/，是错的
+                    .AllowAnyHeader()//Ensures that the policy allows any header.
+                    .AllowAnyMethod();
+                });
+            });
+
+            //跨域第一种办法，注意下边 Configure 中进行配置
+            //services.AddCors();
+            #endregion
 
             return new AutofacServiceProvider(AutofacCore.InitAutofac(services));
         }
@@ -88,7 +126,14 @@ namespace CoreWebApp.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, DataContext context)
         {
+            //身份验证接口自定义信息中间件
+            app.UseErrorHandling();
+            //app.UseStatusCodePages();//把错误码返回前台，比如是404
+
+            //注意此授权方法已经放弃，请使用下边的官方验证方法。但是如果你还想传User的全局变量，还是可以继续使用中间件
+            //app.UseMiddleware<TokenAuth>();
             app.UseAuthentication();
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -104,12 +149,18 @@ namespace CoreWebApp.Api
                 app.UseHsts();
             }
 
-            //todo:测试可以允许任意跨域，正式环境要加权限
-            app.UseCors(builder => builder.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+            //跨域第二种方法，使用策略，详细策略信息在ConfigureService中
+            app.UseCors("LimitRequests");//将 CORS 中间件添加到 web 应用程序管线中, 以允许跨域请求。
 
-            app.UseMiddleware<TokenAuth>();
+            //跨域第一种版本，请要ConfigureService中配置服务 services.AddCors(); 
+            //    app.UseCors(options => options.WithOrigins("http://localhost:8021").AllowAnyHeader()
+            //.AllowAnyMethod());
+
+            ////todo:测试可以允许任意跨域，正式环境要加权限
+            //app.UseCors(builder => builder.AllowAnyOrigin()
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader());
+
 
             DbInitializer.Initialize(context);
 
