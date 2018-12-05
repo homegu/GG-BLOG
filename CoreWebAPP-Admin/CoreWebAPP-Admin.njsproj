@@ -12,7 +12,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>9304063f-b96e-49a7-a9c2-77ad54e3e2f8</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>server.js</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -41,7 +42,6 @@
     <Compile Include="config\dev.env.js" />
     <Compile Include="config\index.js" />
     <Compile Include="config\prod.env.js" />
-    <Compile Include="server.js" />
     <Compile Include="src\api\login.js" />
     <Compile Include="src\api\table.js" />
     <Compile Include="src\icons\index.js" />
