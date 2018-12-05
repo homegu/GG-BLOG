@@ -21,7 +21,7 @@ namespace CoreWebApp.Model
         public string RegisterIP { get; set; }
         [MaxLength(50)]
         public string LastLoginIP { get; set; }
-        public string Role { get; set; }
+        public string Role { get; set; } = string.Empty;
     }
 
     public class UserBaseViewModel: Entity_Enabled

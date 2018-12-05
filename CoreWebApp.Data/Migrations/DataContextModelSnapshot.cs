@@ -42,6 +42,8 @@ namespace CoreWebApp.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
+                    b.Property<string>("Role");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(32);

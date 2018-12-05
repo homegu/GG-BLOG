@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CoreWebApp.Infrastructure;
+using Newtonsoft.Json;
 
 namespace CoreWebApp.Service.Module
 {
@@ -39,13 +40,18 @@ namespace CoreWebApp.Service.Module
             {
                 return Failed("密码错误");
             }
-            ++user.LoginCount;
+            var userJSONStr = JsonConvert.SerializeObject(user);
+            void SetUserEntity() {
+                ++user.LoginCount;
+                user.LastLoginTime = DateTime.Now;
+            }
+            SetUserEntity();
             using (var tran = _unitwork.BeginTransaction())
             {
                 _repo.Update(user);
                 tran.Commit();
             }
-            return Success(user);
+            return Success(JsonConvert.DeserializeObject<User>(userJSONStr));
         }
     }
 }
