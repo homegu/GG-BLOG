@@ -8,33 +8,44 @@ using System.Threading.Tasks;
 using CoreWebApp.Infrastructure;
 using CoreWebApp.Infrastructure.Helper;
 using CoreWebApp.Model;
+using CoreWebApp.Model.Dto;
 using CoreWebApp.Repository.Contract;
 using CoreWebApp.Service;
 using CoreWebApp.Service.Module;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CoreWebApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : BaseController
+    public class SystemController : BaseController
     {
         private UserService userService;
 
-        public UserController(UserService _service)
+        public SystemController(UserService _service)
         {
             userService = _service;
         }
 
-        //[Produces("application/json")]
+        /// <summary>
+        /// 用户登陆
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult UserLogin(string userName,string pwd)
+        [Route("Login")]
+        //[Consumes("application/x-www-form-urlencoded")]
+        public Response UserLogin(UserLoginDto user)
         {
-            var res = userService.UserLogin(userName, pwd);
-            if (res.Code == 200)
+            var res = userService.UserLogin(user);
+            if (res.Code ==  ResponseCodeEnum.success)
             {
                 var claims = new[]
                 {
@@ -66,18 +77,15 @@ namespace CoreWebApp.Api.Controllers
                 //    Id = res.Result.Id,
                 //    LastLoginTime = res.Result.LastLoginTime
                 //}, new TimeSpan(0,30,0), new TimeSpan(12,0,0));//将JWT字符串和tokenModel作为key和value存入缓存
-                return Ok(new
-                {
-                    token = encodedJwt
-                });
-            }
-            return BadRequest("用户名或密码错误。");
+                return Success<string>("登陆成功",encodedJwt);
+            };
+            return Failed(res.Message);
         }
 
         // GET api/values
         [Authorize]
         [HttpGet]
-        public IEnumerable<string> Get(string userName, string pwd)
+        public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }

@@ -31,7 +31,8 @@ namespace CoreWebApp.Api.Middleware
                 {
                     statusCode = 200;
                 }
-                await HandleExceptionAsync(context, statusCode, ex.Message);
+                ResponseCodeEnum code = (ResponseCodeEnum)statusCode;
+                await HandleExceptionAsync(context, code, ex.Message);
             }
             finally
             {
@@ -39,11 +40,11 @@ namespace CoreWebApp.Api.Middleware
                 var msg = "";
                 if (statusCode == 401)
                 {
-                    msg = "未授权";
+                    msg = "您无权访问";
                 }
                 else if (statusCode == 404)
                 {
-                    msg = "未找到服务";
+                    msg = "服务不存在";
                 }
                 else if (statusCode == 502)
                 {
@@ -55,14 +56,15 @@ namespace CoreWebApp.Api.Middleware
                 }
                 if (!string.IsNullOrWhiteSpace(msg))
                 {
-                    await HandleExceptionAsync(context, statusCode, msg);
+                    ResponseCodeEnum code = (ResponseCodeEnum)statusCode;
+                    await HandleExceptionAsync(context, code, msg);
                 }
             }
         }
         //异常错误信息捕获，将错误信息用Json方式返回
-        private static Task HandleExceptionAsync(HttpContext context, int statusCode, string msg)
+        private static Task HandleExceptionAsync(HttpContext context, ResponseCodeEnum code, string msg)
         {
-            var result = JsonConvert.SerializeObject(new Response() {  Code = statusCode, Message = msg });
+            var result = JsonConvert.SerializeObject(new Response() {  Code = code, Message = msg });
             context.Response.ContentType = "application/json;charset=utf-8";
             return context.Response.WriteAsync(result);
         }

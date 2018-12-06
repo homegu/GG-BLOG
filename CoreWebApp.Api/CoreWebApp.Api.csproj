@@ -4,7 +4,16 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Administrator\source\repos\GG-BLOG\CoreWebApp.Api\CoreWebApp.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
+    <Compile Remove="AuthHelper\TokenAuth.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AuthHelper\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

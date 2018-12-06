@@ -30,8 +30,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
-using CoreWebApp.Api.AuthHelper;
 using CoreWebApp.Api.Middleware;
+using System.Reflection;
+using CoreWebApp.Api.Filter;
 
 namespace CoreWebApp.Api
 {
@@ -47,10 +48,13 @@ namespace CoreWebApp.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(options => {
+                //options.Filters.Add<ModelVerifyActionFilter>(); //自带模型验证，废弃
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddMemoryCache();
 
+            services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
 
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
@@ -79,6 +83,7 @@ namespace CoreWebApp.Api
                 };
             });
 
+            var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Info
@@ -88,6 +93,9 @@ namespace CoreWebApp.Api
                     Description = $"博客 HTTP API v1",
                     TermsOfService = "None",
                 });
+                //var basePath = AppContext.BaseDirectory;
+                var xmlPath = System.IO.Path.Combine(basePath, "CoreWebApp.Api.xml");
+                options.IncludeXmlComments(xmlPath);
             });
 
             #region CORS
@@ -127,7 +135,7 @@ namespace CoreWebApp.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, DataContext context)
         {
             //身份验证接口自定义信息中间件
-            app.UseErrorHandling();
+            //app.UseErrorHandling();
             //app.UseStatusCodePages();//把错误码返回前台，比如是404
 
             //注意此授权方法已经放弃，请使用下边的官方验证方法。但是如果你还想传User的全局变量，还是可以继续使用中间件
@@ -137,7 +145,7 @@ namespace CoreWebApp.Api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MsSystem API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "博客接口文档 v1");
             });
 
             if (env.IsDevelopment())

@@ -30,7 +30,7 @@ namespace CoreWebApp.Service
         {
             return new Response<T>
             {
-                Code = 200,
+                Code =  ResponseCodeEnum.success,
                 Message = string.Empty,
                 Result = data
             };
@@ -40,7 +40,7 @@ namespace CoreWebApp.Service
         {
             return new Response<TEntity>
             {
-                Code = 200,
+                Code =  ResponseCodeEnum.success,
                 Message = string.Empty,
                 Result = data
             };
@@ -50,12 +50,12 @@ namespace CoreWebApp.Service
         {
             return new Response<TEntity>
             {
-                Code = 500,
+                Code =  ResponseCodeEnum.error,
                 Message = message,
             };
         }
 
-        protected Response<T> Failed(string message,int code)
+        protected Response<T> Other(string message, ResponseCodeEnum code)
         {
             return new Response<T>
             {
@@ -68,7 +68,7 @@ namespace CoreWebApp.Service
         {
             return new Response<T>
             {
-                Code = 500,
+                Code =  ResponseCodeEnum.error,
                 Message = message,
             };
         }

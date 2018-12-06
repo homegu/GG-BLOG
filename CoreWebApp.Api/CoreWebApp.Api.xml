@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoreWebApp.Api</name>
+    </assembly>
+    <members>
+        <member name="M:CoreWebApp.Api.Controllers.SystemController.UserLogin(CoreWebApp.Model.Dto.UserLoginDto)">
+            <summary>
+            用户登陆
+            </summary>
+            <param name="userName"></param>
+            <param name="pwd"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

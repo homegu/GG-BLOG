@@ -14,15 +14,28 @@ namespace CoreWebApp.Infrastructure
         /// <summary>
         /// 操作状态码，200为正常
         /// </summary>
-        public int Code { get; set; }
+        public ResponseCodeEnum Code { get; set; }
 
         public Response()
         {
-            Code = 200;
+            Code =  ResponseCodeEnum.success;
             Message = "操作成功";
         }
     }
 
+    /// <summary>
+    /// 状态码
+    /// </summary>
+    public enum ResponseCodeEnum
+    {
+        success = 200,
+        error = 500,
+        badRequest = 400,
+        noFind = 404,
+        unauthorized = 401,
+        requestError = 502,
+        user_break = 999,
+    }
 
     /// <summary>
     /// WEBAPI通用返回泛型基类

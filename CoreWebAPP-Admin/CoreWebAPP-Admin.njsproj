@@ -10,7 +10,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>9304063f-b96e-49a7-a9c2-77ad54e3e2f8</ProjectGuid>
+    <ProjectGuid>ae4ff275-3065-43ca-be86-a52de64a4bf4</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>
     </StartupFile>
@@ -29,6 +29,44 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="build\" />
+    <Folder Include="config\" />
+    <Folder Include="src\" />
+    <Folder Include="src\api\" />
+    <Folder Include="src\assets\" />
+    <Folder Include="src\assets\404_images\" />
+    <Folder Include="src\components\" />
+    <Folder Include="src\components\Breadcrumb\" />
+    <Folder Include="src\components\Hamburger\" />
+    <Folder Include="src\components\SvgIcon\" />
+    <Folder Include="src\icons\" />
+    <Folder Include="src\icons\svg\" />
+    <Folder Include="src\router\" />
+    <Folder Include="src\store\" />
+    <Folder Include="src\store\modules\" />
+    <Folder Include="src\styles\" />
+    <Folder Include="src\utils\" />
+    <Folder Include="src\views\" />
+    <Folder Include="src\views\dashboard\" />
+    <Folder Include="src\views\form\" />
+    <Folder Include="src\views\layout\" />
+    <Folder Include="src\views\layout\components\" />
+    <Folder Include="src\views\layout\components\Sidebar\" />
+    <Folder Include="src\views\layout\mixin\" />
+    <Folder Include="src\views\login\" />
+    <Folder Include="src\views\nested\" />
+    <Folder Include="src\views\nested\menu1\" />
+    <Folder Include="src\views\nested\menu1\menu1-1\" />
+    <Folder Include="src\views\nested\menu1\menu1-2\" />
+    <Folder Include="src\views\nested\menu1\menu1-2\menu1-2-1\" />
+    <Folder Include="src\views\nested\menu1\menu1-2\menu1-2-2\" />
+    <Folder Include="src\views\nested\menu1\menu1-3\" />
+    <Folder Include="src\views\nested\menu2\" />
+    <Folder Include="src\views\table\" />
+    <Folder Include="src\views\tree\" />
+    <Folder Include="static\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include=".eslintrc.js" />
     <Compile Include=".postcssrc.js" />
@@ -58,6 +96,8 @@
     <Compile Include="src\utils\validate.js" />
     <Compile Include="src\views\layout\components\index.js" />
     <Compile Include="src\views\layout\mixin\ResizeHandler.js" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include=".babelrc" />
     <Content Include=".editorconfig" />
     <Content Include=".eslintignore" />
@@ -68,7 +108,9 @@
     <Content Include="index.html" />
     <Content Include="LICENSE" />
     <Content Include="package-lock.json" />
+    <Content Include="package.json" />
     <Content Include="README-zh.md" />
+    <Content Include="README.md" />
     <Content Include="src\App.vue" />
     <Content Include="src\assets\404_images\404.png" />
     <Content Include="src\assets\404_images\404_cloud.png" />
@@ -112,46 +154,6 @@
     <Content Include="src\views\table\index.vue" />
     <Content Include="src\views\tree\index.vue" />
     <Content Include="static\.gitkeep" />
-    <Content Include="package.json" />
-    <Content Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="build\" />
-    <Folder Include="config\" />
-    <Folder Include="src\" />
-    <Folder Include="src\api\" />
-    <Folder Include="src\assets\" />
-    <Folder Include="src\assets\404_images\" />
-    <Folder Include="src\components\" />
-    <Folder Include="src\components\Breadcrumb\" />
-    <Folder Include="src\components\Hamburger\" />
-    <Folder Include="src\components\SvgIcon\" />
-    <Folder Include="src\icons\" />
-    <Folder Include="src\icons\svg\" />
-    <Folder Include="src\router\" />
-    <Folder Include="src\store\" />
-    <Folder Include="src\store\modules\" />
-    <Folder Include="src\styles\" />
-    <Folder Include="src\utils\" />
-    <Folder Include="src\views\" />
-    <Folder Include="src\views\dashboard\" />
-    <Folder Include="src\views\form\" />
-    <Folder Include="src\views\layout\" />
-    <Folder Include="src\views\layout\components\" />
-    <Folder Include="src\views\layout\components\Sidebar\" />
-    <Folder Include="src\views\layout\mixin\" />
-    <Folder Include="src\views\login\" />
-    <Folder Include="src\views\nested\" />
-    <Folder Include="src\views\nested\menu1\" />
-    <Folder Include="src\views\nested\menu1\menu1-1\" />
-    <Folder Include="src\views\nested\menu1\menu1-2\" />
-    <Folder Include="src\views\nested\menu1\menu1-2\menu1-2-1\" />
-    <Folder Include="src\views\nested\menu1\menu1-2\menu1-2-2\" />
-    <Folder Include="src\views\nested\menu1\menu1-3\" />
-    <Folder Include="src\views\nested\menu2\" />
-    <Folder Include="src\views\table\" />
-    <Folder Include="src\views\tree\" />
-    <Folder Include="static\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
