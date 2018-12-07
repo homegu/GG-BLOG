@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CoreWebApp.Model
 {
     [Table("sys_User")]
-    public class User: UserBaseViewModel
+    public class User: UserBaseModel
     {
         [MaxLength(32)]
         [Required]
@@ -24,11 +24,20 @@ namespace CoreWebApp.Model
         public string Role { get; set; } = string.Empty;
     }
 
-    public class UserBaseViewModel: Entity_Enabled
+    public class UserBaseModel: Entity_Enabled
     {
         [MaxLength(32)]
         [Required]
         public string UserName { get; set; }
         public DateTime? LastLoginTime { get; set; }
+        [MaxLength(200)]
+        public string Token { get; set; }
+    }
+
+    public class UserTokenModel
+    {
+        public string UserName { get; set; }
+        public DateTime? LastLoginTime { get; set; }
+        public string Token { get; set; }
     }
 }

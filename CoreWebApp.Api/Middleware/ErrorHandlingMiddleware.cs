@@ -69,12 +69,5 @@ namespace CoreWebApp.Api.Middleware
             return context.Response.WriteAsync(result);
         }
     }
-    //扩展方法
-    public static class ErrorHandlingExtensions
-    {
-        public static IApplicationBuilder UseErrorHandling(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<ErrorHandlingMiddleware>();
-        }
-    }
+
 }

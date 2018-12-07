@@ -46,7 +46,9 @@ service.interceptors.response.use(
       });
       return Promise.reject('error')
     } else if (res.code === 999) {
-
+      // store.dispatch('FedLogOut').then(() => {
+      //   location.reload() // 为了重新实例化vue-router对象 避免bug
+      // })
     } else if (res.code === 401) {
 
     } else if (res.code === 200) {

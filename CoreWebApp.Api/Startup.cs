@@ -30,17 +30,31 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
-using CoreWebApp.Api.Middleware;
 using System.Reflection;
 using CoreWebApp.Api.Filter;
+using CoreWebApp.Api.Middleware;
+using log4net.Repository;
+using log4net;
+using log4net.Config;
+using Blog.Core.Log;
 
 namespace CoreWebApp.Api
 {
     public class Startup
     {
+
+        /// <summary>
+        /// log4net 仓储库
+        /// </summary>
+        public static ILoggerRepository repository { get; set; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            //log4net
+            repository = LogManager.CreateRepository("CoreWebApp.Service");
+            //指定配置文件
+            XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));
         }
 
         public IConfiguration Configuration { get; }
@@ -49,12 +63,16 @@ namespace CoreWebApp.Api
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => {
+                options.Filters.Add<GlobalExceptionFilter>(); 
                 //options.Filters.Add<ModelVerifyActionFilter>(); //自带模型验证，废弃
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddMemoryCache();
 
             services.AddSingleton<Microsoft.AspNetCore.Http.IHttpContextAccessor, Microsoft.AspNetCore.Http.HttpContextAccessor>();
+
+            //log日志注入
+            services.AddSingleton<ILoggerHelper, LogHelper>();
 
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Default")));
@@ -174,7 +192,6 @@ namespace CoreWebApp.Api
 
             app.UseHttpsRedirection();
             app.UseMvc();
-
         }
     }
 }
