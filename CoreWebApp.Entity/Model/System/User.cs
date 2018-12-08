@@ -13,31 +13,29 @@ namespace CoreWebApp.Model
     public class User: UserBaseModel
     {
         [MaxLength(32)]
-        [Required]
+        [Required(ErrorMessage = "密码不能为空")]
         public string PassWord { get; set; }
         public int LoginCount { get; set; }
         [MaxLength(50)]
-        [Required]
+        [Required(ErrorMessage = "注册IP不能为空")]
         public string RegisterIP { get; set; }
         [MaxLength(50)]
         public string LastLoginIP { get; set; }
-        public string Role { get; set; } = string.Empty;
     }
 
     public class UserBaseModel: Entity_Enabled
     {
         [MaxLength(32)]
-        [Required]
+        [Required(ErrorMessage = "用户名不能为空")]
         public string UserName { get; set; }
         public DateTime? LastLoginTime { get; set; }
-        [MaxLength(200)]
+        [MaxLength(1000)]
         public string Token { get; set; }
     }
 
     public class UserTokenModel
     {
         public string UserName { get; set; }
-        public DateTime? LastLoginTime { get; set; }
         public string Token { get; set; }
     }
 }

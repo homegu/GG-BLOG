@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CoreWebApp.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class addFiled : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,17 +12,15 @@ namespace CoreWebApp.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(maxLength: 100, nullable: false),
-                    CreateBy = table.Column<int>(nullable: false),
-                    CreateTime = table.Column<DateTime>(nullable: false),
-                    UpdateBy = table.Column<int>(nullable: false),
-                    UpdateTime = table.Column<DateTime>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 30, nullable: true),
-                    PassWord = table.Column<string>(maxLength: 30, nullable: true),
                     Enabled = table.Column<bool>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 32, nullable: false),
+                    LastLoginTime = table.Column<DateTime>(nullable: true),
+                    Token = table.Column<string>(maxLength: 200, nullable: true),
+                    PassWord = table.Column<string>(maxLength: 32, nullable: false),
                     LoginCount = table.Column<int>(nullable: false),
-                    RegIP = table.Column<string>(maxLength: 50, nullable: true),
+                    RegisterIP = table.Column<string>(maxLength: 50, nullable: false),
                     LastLoginIP = table.Column<string>(maxLength: 50, nullable: true),
-                    LastLoginTime = table.Column<DateTime>(nullable: false)
+                    Role = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

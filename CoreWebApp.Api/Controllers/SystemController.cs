@@ -42,29 +42,21 @@ namespace CoreWebApp.Api.Controllers
         //[Consumes("application/x-www-form-urlencoded")]
         public Response UserLogin(UserLoginDto user)
         {
-            var res = userService.UserLogin(user);
-            if (res.Code == ResponseCodeEnum.success)
-            {
-                return Success("登陆成功", res.Result);
-            };
-            return Failed(res.Message);
+            return userService.UserLogin(user);
         }
 
-        // GET api/values
+        /// <summary>
+        /// 退出登录
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
+        [Route("Logout")]
         [Authorize]
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpPost]
+        public Response Logout(UserTokenModel userInfo)
         {
-            return new string[] { "value1", "value2" };
+            return userService.Logout(userInfo);
         }
-
-        //[Route("Logout")]
-        //[Authorize]
-        //[HttpPost]
-        //public IActionResult Logout()
-        //{
-            
-        //}
 
         // GET api/values/5
         //[HttpGet("{id}")]

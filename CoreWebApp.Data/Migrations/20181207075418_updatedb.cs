@@ -2,7 +2,7 @@
 
 namespace CoreWebApp.Data.Migrations
 {
-    public partial class addRoleFiled : Migration
+    public partial class updatedb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

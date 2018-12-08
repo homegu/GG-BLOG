@@ -35,35 +35,61 @@ namespace CoreWebApp.Api.Controllers
         //    return context.Response.WriteAsync(result);
         //}
 
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public Response Success(string message)
-        {
-            return new Response()
-            {
-                Code =  ResponseCodeEnum.success,
-                Message = message,
-            };
-        }
+        //[ApiExplorerSettings(IgnoreApi = true)]
+        //public Response Success()
+        //{
+        //    return new Response()
+        //    {
+        //        Code = ResponseCodeEnum.success,
+        //        Message = string.Empty
+        //    };
+        //}
 
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public Response<TEntity> Success<TEntity>(string message,TEntity data)
-        {
-            return new Response<TEntity>()
-            {
-                Code = ResponseCodeEnum.success,
-                Message = message,
-                Result = data
-            };
-        }
+        //[ApiExplorerSettings(IgnoreApi = true)]
+        //public Response Success(string message)
+        //{
+        //    return new Response()
+        //    {
+        //        Code =  ResponseCodeEnum.success,
+        //        Message = message,
+        //    };
+        //}
 
+        //[ApiExplorerSettings(IgnoreApi = true)]
+        //public Response<TEntity> Success<TEntity>(string message,TEntity data)
+        //{
+        //    return new Response<TEntity>()
+        //    {
+        //        Code = ResponseCodeEnum.success,
+        //        Message = message,
+        //        Data = data
+        //    };
+        //}
+
+        //[ApiExplorerSettings(IgnoreApi = true)]
+        //protected Response Failed(string message)
+        //{
+        //    return new Response
+        //    {
+        //        Code =  ResponseCodeEnum.error,
+        //        Message = message,
+        //    };
+        //}
+
+        /// <summary>
+        /// 获取当前请求的Tokent
+        /// </summary>
+        /// <returns></returns>
         [ApiExplorerSettings(IgnoreApi = true)]
-        protected Response Failed(string message)
+        public string GetToken()
         {
-            return new Response
+            var headers = context.Request.Headers;
+            if (!headers.ContainsKey("Authorization"))
             {
-                Code =  ResponseCodeEnum.error,
-                Message = message,
-            };
+                return string.Empty;
+            }
+            var tokenStr = headers["Authorization"];
+            return tokenStr.ToString().Substring("Bearer ".Length).Trim();
         }
     }
 }

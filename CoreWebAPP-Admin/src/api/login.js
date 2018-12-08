@@ -11,17 +11,18 @@ export function login(userName, pwd) {
   })
 }
 
-export function getInfo(token) {
+export function getInfo() {
   return request({
-    url: '/user/info',
+    url: '/api/User/info',
     method: 'get',
-    params: { token }
+    params: {}
   })
 }
 
-export function logout() {
+export function logout(data) {
   return request({
     url: '/api/System/Logout',
-    method: 'post'
+    method: 'post',
+    data:data
   })
 }

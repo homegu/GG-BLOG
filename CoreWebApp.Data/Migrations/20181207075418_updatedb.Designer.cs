@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreWebApp.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20181204105804_updatedb-addFiled")]
-    partial class updatedbaddFiled
+    [Migration("20181207075418_updatedb")]
+    partial class updatedb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,6 +45,9 @@ namespace CoreWebApp.Data.Migrations
                         .HasMaxLength(50);
 
                     b.Property<string>("Role");
+
+                    b.Property<string>("Token")
+                        .HasMaxLength(200);
 
                     b.Property<string>("UserName")
                         .IsRequired()

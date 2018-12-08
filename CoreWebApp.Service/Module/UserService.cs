@@ -1,6 +1,5 @@
 ﻿using CoreWebApp.Data.DBContext;
 using CoreWebApp.Model;
-using CoreWebApp.Model.Enum;
 using CoreWebApp.Repository;
 using CoreWebApp.Repository.Contract;
 using System;
@@ -27,6 +26,17 @@ namespace CoreWebApp.Service.Module
             jwtSettings = jwtSetting.Value;
         }
 
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public Response<UserInfoDto> GetInfo(string token)
+        {
+            var user =  _repo.FindBy(x => x.Token == token);
+            return Success<UserInfoDto>(new UserInfoDto {  UserName = user.UserName });
+        }
+        
         public Response<UserTokenModel> UserLogin(UserLoginDto userInfo) {
 
             if (userInfo.UserName.IsNullOrEmpty())
@@ -53,11 +63,12 @@ namespace CoreWebApp.Service.Module
                 return Failed<UserTokenModel>("该用户被禁止登录");
             }
             var userJSONStr = JsonConvert.SerializeObject(user);
+            var userTonkentModel = GetTonken(user);
+
             void SetUserEntity() {
                 ++user.LoginCount;
-                var userTonkentModel = GetTonken(user);
                 user.Token = userTonkentModel.Token;
-                user.LastLoginTime = userTonkentModel.LastLoginTime;
+                user.LastLoginTime = DateTime.Now;
             }
             SetUserEntity();
             using (var tran = _unitwork.BeginTransaction())
@@ -65,11 +76,26 @@ namespace CoreWebApp.Service.Module
                 _repo.Update(user);
                 tran.Commit();
             }
-            return Success(JsonConvert.DeserializeObject<UserTokenModel>(userJSONStr));
+            return Success(userTonkentModel);
         }
 
+        public Response Logout(UserTokenModel userInfo)
+        {
+            var user =  _repo.FindBy(x => x.UserName == userInfo.UserName && x.Token == userInfo.Token);
+            if (user == null)
+            {
+                return Success(null);
+            }
+            user.Token = string.Empty;
+            using (var tran = _unitwork.BeginTransaction())
+            {
+                _repo.Update(user);
+                tran.Commit();
+            }
+            return Success(null);
+        }
 
-        public UserTokenModel GetTonken(User user)
+        private UserTokenModel GetTonken(User user)
         {
             var claims = new[]
                 {
@@ -83,7 +109,7 @@ namespace CoreWebApp.Service.Module
                     new Claim(JwtRegisteredClaimNames.Iss,jwtSettings.Issuer),
                     new Claim(JwtRegisteredClaimNames.Aud,jwtSettings.Audience),
                     //这个Role是官方UseAuthentication要要验证的Role，我们就不用手动设置Role这个属性了
-                    new Claim(ClaimTypes.Role,user.Role),
+                    new Claim(ClaimTypes.Role,RolesItem.Items[0].RoleName),
                 };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -95,7 +121,6 @@ namespace CoreWebApp.Service.Module
                 signingCredentials: creds);
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(token);
-
             //MemoryCacheHelper.AddMemoryCache(encodedJwt, new UserBaseViewModel {
             //    UserName = res.Result.UserName,
             //    Enabled = res.Result.Enabled,
@@ -104,7 +129,6 @@ namespace CoreWebApp.Service.Module
             //}, new TimeSpan(0,30,0), new TimeSpan(12,0,0));//将JWT字符串和tokenModel作为key和value存入缓存
             return new UserTokenModel
             {
-                LastLoginTime = DateTime.Now,
                 Token = encodedJwt,
                 UserName = user.UserName,
             };

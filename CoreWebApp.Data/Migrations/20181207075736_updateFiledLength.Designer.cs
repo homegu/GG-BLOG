@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreWebApp.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20181126090727_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20181207075736_updateFiledLength")]
+    partial class updateFiledLength
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,31 +27,31 @@ namespace CoreWebApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(100);
 
-                    b.Property<int>("CreateBy");
-
-                    b.Property<DateTime>("CreateTime");
-
                     b.Property<bool>("Enabled");
 
                     b.Property<string>("LastLoginIP")
                         .HasMaxLength(50);
 
-                    b.Property<DateTime>("LastLoginTime");
+                    b.Property<DateTime?>("LastLoginTime");
 
                     b.Property<int>("LoginCount");
 
                     b.Property<string>("PassWord")
-                        .HasMaxLength(30);
+                        .IsRequired()
+                        .HasMaxLength(32);
 
-                    b.Property<string>("RegIP")
+                    b.Property<string>("RegisterIP")
+                        .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("UpdateBy");
+                    b.Property<string>("Role");
 
-                    b.Property<DateTime>("UpdateTime");
+                    b.Property<string>("Token")
+                        .HasMaxLength(1000);
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(30);
+                        .IsRequired()
+                        .HasMaxLength(32);
 
                     b.HasKey("Id");
 

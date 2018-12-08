@@ -64,7 +64,7 @@ namespace CoreWebApp.Api
         {
             services.AddMvc(options => {
                 options.Filters.Add<GlobalExceptionFilter>(); 
-                //options.Filters.Add<ModelVerifyActionFilter>(); //自带模型验证，废弃
+                //options.Filters.Add<ModelVerifyActionFilter>(); //系统已经自带模型验证，该验证废弃
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddMemoryCache();

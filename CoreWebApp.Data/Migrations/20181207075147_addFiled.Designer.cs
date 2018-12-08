@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoreWebApp.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20181128090227_InitialCreate234123432141231231")]
-    partial class InitialCreate234123432141231231
+    [Migration("20181207075147_addFiled")]
+    partial class addFiled
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,11 @@ namespace CoreWebApp.Data.Migrations
                     b.Property<string>("RegisterIP")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("Role");
+
+                    b.Property<string>("Token")
+                        .HasMaxLength(200);
 
                     b.Property<string>("UserName")
                         .IsRequired()

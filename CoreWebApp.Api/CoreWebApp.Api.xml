@@ -4,12 +4,31 @@
         <name>CoreWebApp.Api</name>
     </assembly>
     <members>
+        <member name="M:CoreWebApp.Api.Controllers.BaseController.GetToken">
+            <summary>
+            获取当前请求的Tokent
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:CoreWebApp.Api.Controllers.SystemController.UserLogin(CoreWebApp.Model.Dto.UserLoginDto)">
             <summary>
             用户登陆
             </summary>
             <param name="userName"></param>
             <param name="pwd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebApp.Api.Controllers.SystemController.Logout(CoreWebApp.Model.UserTokenModel)">
+            <summary>
+            退出登录
+            </summary>
+            <param name="userInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebApp.Api.Controllers.UserController.GetInfo">
+            <summary>
+            获取用户登录信息
+            </summary>
             <returns></returns>
         </member>
         <member name="M:CoreWebApp.Api.Filter.GlobalExceptionFilter.WriteLog(System.String,System.Exception)">

@@ -2,29 +2,30 @@
 
 namespace CoreWebApp.Data.Migrations
 {
-    public partial class updateTable : Migration
+    public partial class updateFiledLength : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "RegisterIP",
+                name: "Token",
                 table: "sys_User",
-                maxLength: 50,
-                nullable: false,
+                maxLength: 1000,
+                nullable: true,
                 oldClrType: typeof(string),
-                oldMaxLength: 50,
+                oldMaxLength: 200,
                 oldNullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "RegisterIP",
+                name: "Token",
                 table: "sys_User",
-                maxLength: 50,
+                maxLength: 200,
                 nullable: true,
                 oldClrType: typeof(string),
-                oldMaxLength: 50);
+                oldMaxLength: 1000,
+                oldNullable: true);
         }
     }
 }

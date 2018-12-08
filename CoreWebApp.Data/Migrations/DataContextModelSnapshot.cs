@@ -44,6 +44,9 @@ namespace CoreWebApp.Data.Migrations
 
                     b.Property<string>("Role");
 
+                    b.Property<string>("Token")
+                        .HasMaxLength(1000);
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(32);

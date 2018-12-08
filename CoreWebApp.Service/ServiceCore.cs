@@ -32,7 +32,7 @@ namespace CoreWebApp.Service
             {
                 Code =  ResponseCodeEnum.success,
                 Message = string.Empty,
-                Result = data
+                Data = data
             };
         }
 
@@ -42,7 +42,7 @@ namespace CoreWebApp.Service
             {
                 Code =  ResponseCodeEnum.success,
                 Message = string.Empty,
-                Result = data
+                Data = data
             };
         }
 
